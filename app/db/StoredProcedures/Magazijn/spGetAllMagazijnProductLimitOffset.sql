@@ -10,12 +10,12 @@
 use `jamin_a`;
 
 -- Verwijder de oude stored procedure
-DROP PROCEDURE IF EXISTS spGetAllMagazijnProduct;
+DROP PROCEDURE IF EXISTS spGetAllMagazijnProductLimitOffset;
 
 -- Verander even tijdelijk de opdrachtprompt naar //
 DELIMITER //
 
-CREATE PROCEDURE spGetAllMagazijnProduct
+CREATE PROCEDURE spGetAllMagazijnProductLimitOffset
 (
        IN   pLimit    TINYINT    UNSIGNED
       ,IN   pOffset   SMALLINT   UNSIGNED

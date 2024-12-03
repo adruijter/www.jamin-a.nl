@@ -64,7 +64,24 @@
     <div class="row mt-3">
         <div class="col-2"></div>
         <div class="col-8">
-            <h5>Homepage&nbsp;<a href="<?= URLROOT; ?>/homepages/index"><i class="bi bi-arrow-left-square-fill"></i></a></h5>
+            <div class="row">
+                <div class="col-6">
+                    <nav class="pagination justify-content-begin">Homepage&nbsp;<a href="<?= URLROOT; ?>/homepages/index"><i class="bi bi-arrow-left-square-fill"></i></a></nav>
+
+                </div>
+                <div class="col-6">
+                    <nav aria-label="Page navigation example">
+                        <ul class="pagination pagination-sm justify-content-end">
+                            <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+                            <li class="page-item"><a class="page-link" href="<?= URLROOT; ?>/magazijn/index/5/0">1</a></li>
+                            <li class="page-item"><a class="page-link" href="<?= URLROOT; ?>/magazijn/index/5/5">2</a></li>
+                            <li class="page-item"><a class="page-link" href="<?= URLROOT; ?>/magazijn/index/5/10">3</a></li>
+                            <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                        </ul>
+                    </nav>    
+                </div>
+            </div>
+            
         </div>
         <div class="col-2"></div>
     </div>
