@@ -9,7 +9,7 @@ class Magazijn extends BaseController
         $this->magazijnModel = $this->model('MagazijnModel');
     }
 
-    public function index()
+    public function index($limit = 5, $offset = 10)
     {
         $data = [
             'title' => 'Overzicht Magazijn Jamin',
@@ -20,7 +20,7 @@ class Magazijn extends BaseController
         ];
 
 
-        $result = $this->magazijnModel->getAllMagazijnProduct();
+        $result = $this->magazijnModel->getAllMagazijnProduct($limit, $offset);
         
         if (is_null($result)) {
             $data['message'] = 'Er is zijn geen producten gevonden in het magazijn';

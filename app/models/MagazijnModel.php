@@ -14,13 +14,16 @@ class MagazijnModel
     }  
     
     
-    public function getAllMagazijnProduct()
+    public function getAllMagazijnProduct($limit, $offset)
     {
         try {
             
-            $sql = "CALL spGetAllMagazijnProduct()";
+            $sql = "CALL spGetAllMagazijnProduct(:limit, :offset)";
 
             $this->db->query($sql);
+
+            $this->db->bind(':limit', $limit, PDO::PARAM_INT);
+            $this->db->bind(':offset', $offset, PDO::PARAM_INT);
 
             return $this->db->resultSet();
 
