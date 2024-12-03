@@ -15,7 +15,11 @@ DROP PROCEDURE IF EXISTS spGetAllMagazijnProduct;
 -- Verander even tijdelijk de opdrachtprompt naar //
 DELIMITER //
 
-CREATE PROCEDURE spGetAllMagazijnProduct()
+CREATE PROCEDURE spGetAllMagazijnProduct
+(
+       IN   pLimit    TINYINT    UNSIGNED
+      ,IN   pOffset   SMALLINT   UNSIGNED
+)
 BEGIN
     
     SELECT   PROD.Id                    AS ProductId
@@ -31,7 +35,9 @@ BEGIN
     INNER JOIN  Magazijn AS MAGA
             ON  PROD.Id = MAGA.ProductId
     
-    ORDER BY PROD.Barcode ASC;
+    ORDER BY PROD.Barcode ASC
+
+    LIMIT pLimit OFFSET pOffset;
     
 
 END //
