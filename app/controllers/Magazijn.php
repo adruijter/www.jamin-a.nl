@@ -21,6 +21,9 @@ class Magazijn extends BaseController
 
 
         $result = $this->magazijnModel->getAllMagazijnProduct($limit, $offset);
+        // var_Dump($result[0]->TotalCount);
+        $pagination = new Pagination($result[0]->TotalCount, $limit, $offset);
+        var_dump($pagination);
         
         if (is_null($result)) {
             $data['message'] = 'Er is zijn geen producten gevonden in het magazijn';

@@ -11,6 +11,7 @@
     require_once 'config/config.php';
     require_once 'config/constants.php';
     require_once 'helpers/messages.php';
+    require_once 'helpers/Pagination.php';
 
     /**
      * Maak een instantie of object van de Core-Class
