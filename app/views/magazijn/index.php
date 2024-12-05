@@ -85,6 +85,24 @@
         </div>
         <div class="col-2"></div>
     </div>
+
+
+    <div class="row mt-3">
+        <div class="col-2"></div>
+        <div class="col-8">
+            <div class="row">
+                <div class="col-6">
+                    <nav class="pagination justify-content-begin">Homepage&nbsp;<a href="<?= URLROOT; ?>/homepages/index"><i class="bi bi-arrow-left-square-fill"></i></a></nav>
+
+                </div>
+                <div class="col-6">
+                    <?= $data['pagination']->paginationView; ?> 
+                </div>
+            </div>
+            
+        </div>
+        <div class="col-2"></div>
+    </div>
 </div>
 
 <?php require_once APPROOT . '/views/includes/footer.php'; ?>

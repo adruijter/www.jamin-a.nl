@@ -16,14 +16,15 @@ class Magazijn extends BaseController
             'dataRows' => NULL, 
             'message' => NULL,
             'messageColor' => NULL,
-            'messageVisibility' => 'display: none;'
+            'messageVisibility' => 'display: none;',
+            'pagination' => NULL
         ];
 
 
         $result = $this->magazijnModel->getAllMagazijnProduct($limit, $offset);
-        // var_Dump($result[0]->TotalCount);
+
         $pagination = new Pagination($result[0]->TotalCount, $limit, $offset);
-        var_dump($pagination);
+        // var_dump($pagination);
         
         if (is_null($result)) {
             $data['message'] = 'Er is zijn geen producten gevonden in het magazijn';
@@ -31,6 +32,7 @@ class Magazijn extends BaseController
             $data['messageVisibility'] = 'display: flex;';
         } else {
             $data['dataRows'] = $result;
+            $data['pagination'] = $pagination;
         }
 
         $this->view('magazijn/index', $data);
