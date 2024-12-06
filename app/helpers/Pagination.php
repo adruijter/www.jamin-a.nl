@@ -89,6 +89,5 @@ class Pagination
         $paginationView .= '</ul>';
         $paginationView .= '</nav>';
         return $paginationView;  
-    }
-   
+    }   
 }
