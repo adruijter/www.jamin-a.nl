@@ -18,7 +18,7 @@ class MagazijnModel
     {
         try {
             
-            $sql = "CALL spGetAllMagazijnProductLimitOffsetCTE(:limit, :offset)";
+            $sql = "CALL spGetAllMagazijnProductLimitOffset(:limit, :offset)";
 
             $this->db->query($sql);
 

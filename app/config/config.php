@@ -18,3 +18,8 @@ define('URLROOT', 'http://www.jamin-a.nl');
  */
 define('APPROOT', dirname(dirname(__FILE__)));
 
+/**
+ * De limit voor pagination
+ */
+define('LIMIT', 5);
+

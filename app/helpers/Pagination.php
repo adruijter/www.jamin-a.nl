@@ -1,93 +1,78 @@
 <?php
 
+/**
+ * Deze klasse is verantwoordelijk voor het pagineren van data
+ */
+
 class Pagination
 {
+    // Klassenvariabelen
+    public $totalRows;
     public $limit;
     public $offset;
-    public $totalRows;
-    public $totalPagenumbers;
-    public $previousPage;
-    public $currentPage;
-    public $nextPage;
-    public $paginationView;
+    public $totalPages;
+    public $class;
+    public $method;
 
-    public function __construct($totalRows, $limit, $offset)
+
+    public function __construct($totalRows, $limit, $offset, $class, $method)
     {
+        //ECHO $offset;
+        echo $limit;
+        $this->totalRows = $totalRows;
         $this->limit = $limit;
         $this->offset = $offset;
-        $this->totalRows = $totalRows;
-        $this->totalPagenumbers = $this->totalPagenumbers();
-        $this->currentPage = $this->currentPage();
-        $this->previousPage = $this->previousPage();
-        $this->nextPage = $this->nextPage();
-        $this->paginationView = $this->paginationView();
+        $this->totalPages = $this->totalPages();
+        $this->class = $class;
+        $this->method = $method;
     }
 
-    public function totalPagenumbers()
+    public function totalPages()
     {
-        return ceil($this->totalRows / $this->limit);
+        $this->totalPages = ceil($this->totalRows / $this->limit);
+        return $this->totalPages;
     }
 
-    public function currentPage()
+    public function offset($i)
     {
-        return ($this->offset / $this->limit) + 1;
-
+        return ($i-1) * $this->limit;
     }
 
     public function previousPage()
     {
-        if ($this->offset - $this->limit < 0) {
-            return 0;
-        } else {
+        if ($this->offset > 0) {
             return $this->offset - $this->limit;
+        } else {
+            return 0;
         }
-    }  
-    
-    public function nextPage()
-    {
-        // if ($this->offset + $this->limit > ) {
-        //     return 0;
-        // } else {
-        //     return $this->offset + $this->limit;
-        // }
     }
 
-    public function paginationView1()
+    public function nextPage()
     {
-        $paginationView = '';
-        if ($this->totalPagenumbers > 1) {
-            $paginationView .= '<ul class="pagination">';
-            if ($this->currentPage > 1) {
-                $paginationView .= '<li><a href="?offset=' . ($this->currentPage - 2) * $this->limit . '">Previous</a></li>';
-            }
-            for ($i = 1; $i <= $this->totalPagenumbers; $i++) {
-                if ($i == $this->currentPage) {
-                    $paginationView .= '<li class="active"><a href="?offset=' . ($i - 1) * $this->limit . '">' . $i . '</a></li>';
-                } else {
-                    $paginationView .= '<li><a href="?offset=' . ($i - 1) * $this->limit . '">' . $i . '</a></li>';
-                }
-            }
-            if ($this->currentPage < $this->totalPagenumbers) {
-                $paginationView .= '<li><a href="?offset=' . ($this->currentPage) * $this->limit . '">Next</a></li>';
-            }
-            $paginationView .= '</ul>';
+        if ($this->offset + $this->limit < $this->totalRows) {
+            return $this->offset + $this->limit;
+        } else {
+            return $this->offset;
         }
-        return $paginationView;
     }
+
 
     public function paginationView()
     {
         $paginationView  = '<nav aria-label="Page navigation example">';
         $paginationView .= '<ul class="pagination pagination-sm justify-content-end">';
-        $paginationView .= '<li class="page-item"><a class="page-link" href="' . URLROOT . '/magazijn/index/' . $this->limit . '/' . $this->previousPage . '">Previous</a></li>';
+        $paginationView .= '<li class="page-item"><a class="page-link" href="' . URLROOT . '/' . $this->class . '/' . $this->method . '/' . $this->limit . '/' . $this->previousPage() . '">previous</a></li>';
 
-        for ($i = 1; $i <= $this->totalPagenumbers; $i++) {
-            $paginationView .= '<li class="page-' . $i . '"><a class="page-link" href="' . URLROOT . '/magazijn/index/' . $this->limit . '/' . ($this->limit * ($i-1)) . '">' . $i .'</a></li>';
+        for ($i = 1; $i <= $this->totalPages; $i++) {
+            $paginationView .= '<li class="page-' . $i . '"><a class="page-link" href="' . URLROOT . '/' . $this->class . '/' . $this->method . '/' . $this->limit . '/' . $this->offset($i) . '">' . $i . '</a></li>';
         }
 
-        $paginationView .= '<li class="page-item"><a class="page-link" href="' . URLROOT . '/magazijn/index/' . $this->limit . '/' . $this->nextPage . '">Next</a></li>';
+        $paginationView .= '<li class="page-item"><a class="page-link" href="' . URLROOT . '/' . $this->class . '/' . $this->method . '/' . $this->limit . '/' . $this->nextPage() . '">next</a></li>';
         $paginationView .= '</ul>';
         $paginationView .= '</nav>';
-        return $paginationView;  
-    }   
+
+        return $paginationView;
+    }
+
 }
+
