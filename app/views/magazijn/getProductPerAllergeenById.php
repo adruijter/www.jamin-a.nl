@@ -13,16 +13,16 @@
    </div>
 
     <div class="row mt-3">
-        <div class="col-4"></div>
-        <div class="col-4">
+        <div class="col-2"></div>
+        <div class="col-8">
             <h3><?= $data['title']; ?></h3>
         </div>
-        <div class="col-4"></div>
+        <div class="col-2"></div>
     </div>
 
     <div class="row mt-3">
-        <div class="col-4"></div>
-        <div class="col-4">
+        <div class="col-2"></div>
+        <div class="col-8">
 
             <table class="table table-hover">
                 <tbody>
@@ -37,12 +37,12 @@
                 </tbody>
             </table>
         </div>
-        <div class="col-4"></div>
+        <div class="col-2"></div>
     </div>
 
     <div class="row mt-3">
-        <div class="col-4"></div>
-        <div class="col-4">
+        <div class="col-2"></div>
+        <div class="col-8">
             
             <table class="table table-hover">
                 <thead>
@@ -69,16 +69,16 @@
                 </tbody>
             </table>
         </div>
-        <div class="col-4"></div>
+        <div class="col-2"></div>
     </div>
 
     
     <div class="row mt-3">
-        <div class="col-4"></div>
-        <div class="col-4">
-            <h4><a href="<?= URLROOT; ?>/Magazijn/index"><i class="bi bi-arrow-left-square-fill"></i></a></h4>
+        <div class="col-2"></div>
+        <div class="col-8">
+            <h5><a href="<?= URLROOT; ?>/Magazijn/index"><i class="bi bi-arrow-left-square-fill"></i></a></h5>
         </div>
-        <div class="col-4"></div>
+        <div class="col-2"></div>
 
     </div>
     

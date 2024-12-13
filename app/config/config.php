@@ -21,5 +21,5 @@ define('APPROOT', dirname(dirname(__FILE__)));
 /**
  * De limit voor pagination
  */
-define('LIMIT', 5);
+define('LIMIT', 6);
 

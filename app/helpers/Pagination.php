@@ -9,22 +9,27 @@ class Pagination
     // Klassenvariabelen
     public $totalRows;
     public $limit;
-    public $offset;
-    public $totalPages;
+    public $page;
     public $class;
     public $method;
+    public $totalPages;
+    public $offset;
 
 
-    public function __construct($totalRows, $limit, $offset, $class, $method)
+    public function __construct($totalRows, $limit, $page, $class, $method)
     {
-        //ECHO $offset;
-        echo $limit;
         $this->totalRows = $totalRows;
         $this->limit = $limit;
-        $this->offset = $offset;
-        $this->totalPages = $this->totalPages();
+        $this->page = intval($page) ? (int) $page : 1 ;
         $this->class = $class;
         $this->method = $method;
+        $this->totalPages = $this->totalPages();
+        $this->offset = $this->currentPageOffset();
+    }
+
+    public function currentPageOffset()
+    {
+        return $this->page * $this->limit;
     }
 
     public function totalPages()
@@ -33,26 +38,21 @@ class Pagination
         return $this->totalPages;
     }
 
-    public function offset($i)
-    {
-        return ($i-1) * $this->limit;
-    }
-
     public function previousPage()
     {
-        if ($this->offset > 0) {
-            return $this->offset - $this->limit;
+        if (($this->page - 1) < 1) {
+            return $this->page = 1;
         } else {
-            return 0;
+            return ($this->page - 1);
         }
     }
 
     public function nextPage()
     {
-        if ($this->offset + $this->limit < $this->totalRows) {
-            return $this->offset + $this->limit;
+        if (($this->page + 1) > $this->totalPages) {
+            return $this->page = $this->totalPages;
         } else {
-            return $this->offset;
+            return ($this->page + 1);
         }
     }
 
@@ -60,14 +60,18 @@ class Pagination
     public function paginationView()
     {
         $paginationView  = '<nav aria-label="Page navigation example">';
-        $paginationView .= '<ul class="pagination pagination-sm justify-content-end">';
-        $paginationView .= '<li class="page-item"><a class="page-link" href="' . URLROOT . '/' . $this->class . '/' . $this->method . '/' . $this->limit . '/' . $this->previousPage() . '">previous</a></li>';
-
+        $paginationView .= '<ul class="pagination pagination-sm justify-content-begin">';
+        $paginationView .= '<li class="page-previous ';
+        $paginationView .= ($this->page == 1) ? 'disabled' : '';
+        $paginationView .= '"><a class="page-link" href="' . URLROOT . '/' . $this->class . '/' . $this->method . '/' . $this->previousPage() . '">previous</a></li>';
         for ($i = 1; $i <= $this->totalPages; $i++) {
-            $paginationView .= '<li class="page-' . $i . '"><a class="page-link" href="' . URLROOT . '/' . $this->class . '/' . $this->method . '/' . $this->limit . '/' . $this->offset($i) . '">' . $i . '</a></li>';
+            $paginationView .= '<li class="page-' . $i; 
+            $paginationView .= ($i == $this->page) ? ' active' : '';
+            $paginationView .= '"><a class="page-link" href="' . URLROOT . '/' . $this->class . '/' . $this->method . '/'  . $i . '">' . $i . '</a></li>';
         }
-
-        $paginationView .= '<li class="page-item"><a class="page-link" href="' . URLROOT . '/' . $this->class . '/' . $this->method . '/' . $this->limit . '/' . $this->nextPage() . '">next</a></li>';
+        $paginationView .= '<li class="page-next ';
+        $paginationView .= ($this->page == $this->totalPages) ? 'disabled' : '';
+        $paginationView .= '"><a class="page-link" href="' . URLROOT . '/' . $this->class . '/' . $this->method . '/' . $this->nextPage() . '">next</a></li>';
         $paginationView .= '</ul>';
         $paginationView .= '</nav>';
 

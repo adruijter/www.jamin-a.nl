@@ -82,4 +82,8 @@ class Database
         $this->statement->closecursor();
         return $result;
     }
+
+    public function outQuery($sql) {
+        return $this->dbHandler->query($sql);
+    }
 }

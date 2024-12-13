@@ -22,11 +22,19 @@
         <div class="col-2"></div>
     </div>
 
+    <div class="row mt-3">
+        <div class="col-2"></div>
+        <div class="col-8">
+            <?php if (isset($data['pagination'])) { echo $data['pagination']->paginationView(); } ?>
+        </div>
+        <div class="col-2"></div>
+    </div>
+
 
     <div class="row mt-3">
         <div class="col-2"></div>
         <div class="col-8">
-            <table class="table table-hover">
+            <table class="table table-hover table-striped">
                 <thead>
                     <tr>
                         <th>Barcode</th>
@@ -38,13 +46,16 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <?php 
+                    <?php
+                        if (!isset($data['dataRows'])) {
+                            echo '<tr><td colspan="6" class="text-center">Geen data beschikbaar</td></tr>';
+                        } else {
                         foreach($data['dataRows'] as $product) { ?>
                         <tr>
                             <td><?= $product->Barcode; ?></td>
                             <td><?= $product->Naam; ?></td>
-                            <td><?= $product->VerpakkingsEenheid; ?></td>
-                            <td><?= $product->AantalAanwezig; ?></td>
+                            <td class="text-center"><?= $product->VerpakkingsEenheid; ?></td>
+                            <td class="text-center"><?= $product->AantalAanwezig; ?></td>
                             <td class="text-center">
                                 <a href="<?= URLROOT; ?>/magazijn/getProductPerAllergeenById/<?= $product->ProductId; ?>"><i class="bi bi-x-circle text-danger"></i></a>
                                 
@@ -53,7 +64,7 @@
                                 <a href='<?= URLROOT; ?>/magazijn/getProductLeveringById/<?= $product->ProductId; ?>'><i class="bi bi-question-circle text-primary" ></i></a>
                             </td>
                         </tr>
-                        <?php } ?>
+                        <?php }} ?>
 
                 </tbody>
             </table>
@@ -63,18 +74,13 @@
 
     <div class="row mt-3">
         <div class="col-2"></div>
-        <div class="col-8">
-            <div class="row">
-                <div class="col-6">
-                    <h5 class="justify-content-begin">Homepage&nbsp;<a href="<?= URLROOT; ?>/homepages/index"><i class="bi bi-arrow-left-square-fill"></i></a></h5>
-                </div>
-                <div class="col-6">
-                    <?php echo $data['pagination']->paginationView(); ?>
-                </div>
-            </div>
+        <div class="col-8">              
+            <h5 class="justify-content-begin"><a href="<?= URLROOT; ?>/homepages/index"><i class="bi bi-arrow-left-square-fill"></i></a></h5>         
         </div>
         <div class="col-2"></div>
     </div>
+
+    
 </div>
 
 <?php require_once APPROOT . '/views/includes/footer.php'; ?>

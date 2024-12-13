@@ -24,7 +24,7 @@
         <div class="col-2"></div>
         <div class="col-4">
 
-            <table class="table table-hover">
+            <table class="table table-hover table-striped">
                 <tbody>
                     <tr>
                         <th>Naam Leverancier:</th>
@@ -52,7 +52,7 @@
         <div class="col-2"></div>
         <div class="col-8">
             
-            <table class="table table-hover">
+            <table class="table table-hover table-striped">
                 <thead>
                     <th>Naam product</th>
                     <th>Datum laatste levering</th>
@@ -87,7 +87,7 @@
     <div class="row mt-3">
         <div class="col-2"></div>
         <div class="col-8">
-            <h3><a href="<?= URLROOT; ?>/Magazijn/index"><i class="bi bi-arrow-left-square-fill"></i></a></h3>
+            <h5><a href="<?= URLROOT; ?>/Magazijn/index"><i class="bi bi-arrow-left-square-fill"></i></a></h5>
         </div>
         <div class="col-2"></div>
     </div>
