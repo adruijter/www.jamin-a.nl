@@ -26,30 +26,56 @@
             <div class="col-2"></div>
         </div>
 
+        <div class="row mt-2">
+            <div class="col-2"></div>
+            <div class="col-4">
+                <table class="table table-striped table-hover">
+                    <tbody>
+                        <tr>
+                            <th>Naam Leverancier: </th> 
+                            <td><?= $data['dataRows'][0]->LeverancierNaam; ?></td>                       
+                        </tr>
+                        <tr>
+                            <th>Contactpersoon: </th>
+                            <td><?= $data['dataRows'][0]->Contactpersoon; ?></td>
+                        </tr>
+                        <tr>
+                            <th>Leveranciernummer: </th>
+                            <td><?= $data['dataRows'][0]->LeverancierNummer; ?></td>
+                        </tr>
+                        <tr>
+                            <th>Mobiel: </th>
+                            <td><?= $data['dataRows'][0]->Mobiel; ?></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-6"></div>
+        </div>
 
-        <div class="row">
+
+        <div class="row mt-3">
           <div class="col-2"></div>
           <div class="col-8">
             <table class="table table-striped table-hover">
               <thead>
-                <th>Naam</th>
-                <th>Contactpersoon</th>
-                <th>Leveranciernummer</th>
-                <th>Mobiel</th>
-                <th>Aantal producten</th>
-                <th>Toon Producten</th>
+                <th>Naam Product</th>
+                <th>Aantal in Magazijn</th>
+                <th>Verpakkingseenheid</th>
+                <th>Laatste Levering</th>
+                <th>Nieuwe levering</th>
               </thead>
               <tbody>
+                <!-- <?php var_dump($data['dataRows']); ?> -->
                 <?php foreach ($data['dataRows'] as $row) : ?>
                     <tr>
-                        <td><?= $row->Naam; ?></td>
-                        <td><?= $row->Contactpersoon; ?></td>
-                        <td><?= $row->LeverancierNummer; ?></td>
-                        <td><?= $row->Mobiel; ?></td>
-                        <td class="text-center"><?= $row->AantalProducten; ?></td>
+                        <td><?= $row->LeverancierNaam; ?></td> 
+                        <td><?= $row->AantalInMagazijn; ?></td>
+                        <td><?= $row->VerpakkingsEenheid; ?></td>
+                        <td><?= $row->LaatsteLevering; ?></td>
                         <td class="text-center">
                           <a href="<?= URLROOT; ?>/Leverancier/geleverdeproducten/<?= $row->Id; ?>">
-                            <i class="bi bi-box-fill text-primary"></i>
+                          <i class="bi bi-plus-square-fill"></i>
                           </a>                          
                         </td>
                     </tr>
