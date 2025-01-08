@@ -15,7 +15,8 @@
             <!-- <a href="<?= URLROOT; ?>/Countries/index">Landen van de Wereld</a> | -->
            
             <a href="<?= URLROOT; ?>/Magazijn/index">Overzicht Magazijn Jamin (opdr1)</a> |
-            <a href="<?= URLROOT; ?>/Leverancier/index">Overzicht Leverancier (opdr2)</a> 
+            <a href="<?= URLROOT; ?>/Leverancier/index">Overzicht Leverancier (opdr2)</a> |
+            <?= $data['som']; ?>
 
         </div>
         
